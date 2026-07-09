@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu 🤍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,600;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8F3;
+    --blush:#FBDCE6;
+    --rose:#E8A6C1;
+    --deep-rose:#C6688F;
+    --wine:#5C2A3A;
+    --gold:#D4A373;
+    --ink:#4A3540;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Quicksand', sans-serif;
+    overflow-x:hidden;
+  }
+
+  /* Floating hearts background */
+  .hearts-bg{
+    position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .heart{
+    position:absolute;
+    bottom:-10%;
+    font-size:1.4rem;
+    opacity:0.35;
+    color:var(--rose);
+    animation:float-up linear infinite;
+  }
+  @keyframes float-up{
+    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.45; }
+    90%{ opacity:0.35; }
+    100%{ transform:translateY(-110vh) translateX(20px) rotate(25deg); opacity:0; }
+  }
+
+  section{
+    position:relative;
+    z-index:1;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:6vh 6vw;
+    text-align:center;
+  }
+
+  /* ---------- HERO ---------- */
+  #hero{
+    background:radial-gradient(circle at 50% 20%, var(--blush) 0%, var(--cream) 70%);
+  }
+  .eyebrow{
+    font-family:'Quicksand', sans-serif;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--deep-rose);
+    font-weight:600;
+    margin-bottom:1.4rem;
+  }
+  .hero-title{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(2.4rem, 7vw, 5rem);
+    color:var(--wine);
+    line-height:1.15;
+    max-width:16ch;
+  }
+  .hero-sub{
+    margin-top:1.6rem;
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(1.1rem, 2.4vw, 1.5rem);
+    color:var(--ink);
+    max-width:36ch;
+  }
+  .scroll-hint{
+    margin-top:4rem;
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--deep-rose);
+    opacity:0.7;
+    animation:bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(8px); }
+  }
+
+  h2.section-title{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(1.8rem, 4.5vw, 2.8rem);
+    color:var(--wine);
+    margin-bottom:0.6rem;
+  }
+  p.section-kicker{
+    font-family:'Quicksand';
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-size:0.68rem;
+    color:var(--deep-rose);
+    font-weight:600;
+    margin-bottom:1rem;
+  }
+
+  /* ---------- GALLERY ---------- */
+  #gallery{ background:var(--cream); }
+  .gallery-grid{
+    margin-top:3rem;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1rem;
+    max-width:900px;
+    width:100%;
+  }
+  .polaroid{
+    background:#fff;
+    padding:0.6rem 0.6rem 1.6rem 0.6rem;
+    box-shadow:0 12px 24px -8px rgba(92,42,58,0.25);
+    transform:rotate(var(--r, -2deg));
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+    position:relative;
+  }
+  .polaroid:nth-child(2n){ --r:2deg; }
+  .polaroid:nth-child(3n){ --r:-1.5deg; }
+  .polaroid:hover{
+    transform:rotate(0deg) scale(1.05) translateY(-6px);
+    box-shadow:0 20px 34px -10px rgba(92,42,58,0.35);
+    z-index:5;
+  }
+  .polaroid img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    display:block;
+    background:var(--blush);
+  }
+  .polaroid figcaption{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--wine);
+    margin-top:0.5rem;
+  }
+  @media (max-width:640px){
+    .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  /* ---------- LETTER / ENVELOPE ---------- */
+  #letter{
+    background:linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%);
+  }
+  .envelope-wrap{
+    margin-top:2.5rem;
+    perspective:1400px;
+  }
+  .envelope{
+    width:min(320px, 80vw);
+    height:210px;
+    position:relative;
+    cursor:pointer;
+  }
+  .env-back{
+    position:absolute; inset:0;
+    background:var(--rose);
+    border-radius:6px;
+    box-shadow:0 18px 40px -12px rgba(92,42,58,0.4);
+  }
+  .env-flap{
+    position:absolute; top:0; left:0; width:100%; height:0;
+    border-left:160px solid transparent;
+    border-right:160px solid transparent;
+    border-top:110px solid var(--deep-rose);
+    transform-origin:top;
+    transition:transform 0.6s cubic-bezier(.6,-0.28,.74,.05);
+    z-index:3;
+  }
+  .envelope.open .env-flap{
+    transform:rotateX(180deg);
+    z-index:1;
+  }
+  .env-body{
+    position:absolute; inset:0; top:14px;
+    background:#fdf0f3;
+    border-radius:0 0 6px 6px;
+    z-index:2;
+  }
+  .env-body::before{
+    content:"";
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    background:
+      linear-gradient(135deg, transparent 49.6%, #fdf0f3 50%) top left / 50% 55% no-repeat,
+      linear-gradient(-135deg, transparent 49.6%, #fdf0f3 50%) top right / 50% 55% no-repeat;
+  }
+  .wax-seal{
+    position:absolute; top:78px; left:50%; transform:translateX(-50%);
+    width:46px; height:46px; border-radius:50%;
+    background:var(--wine);
+    color:var(--blush);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+    z-index:4;
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
+  .envelope.open .wax-seal{
+    opacity:0;
+    transform:translateX(-50%) scale(0.4);
+  }
+  .letter-paper{
+    position:absolute;
+    left:8%;
+    top:0;
+    width:84%;
+    background:#fffdf8;
+    border-radius:4px;
+    box-shadow:0 10px 20px rgba(92,42,58,0.15);
+    padding:1.6rem 1.4rem;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.05rem;
+    line-height:1.65;
+    color:var(--ink);
+    text-align:left;
+    z-index:0;
+    transform:translateY(6px);
+    transition:transform 0.7s cubic-bezier(.2,.9,.3,1.2), z-index 0s 0.3s;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+  }
+  .envelope.open .letter-paper{
+    transform:translateY(-92%);
+    z-index:5;
+    max-height:600px;
+    opacity:1;
+    overflow:visible;
+  }
+  .letter-paper .signoff{
+    display:block;
+    margin-top:1rem;
+    font-style:italic;
+    color:var(--deep-rose);
+    text-align:right;
+  }
+  .tap-label{
+    margin-top:1.4rem;
+    font-size:0.8rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--deep-rose);
+  }
+
+  /* ---------- PLAYLIST ---------- */
+  #playlist{ background:var(--cream); }
+  .cassette{
+    margin-top:2.5rem;
+    width:min(380px, 88vw);
+    background:linear-gradient(160deg, var(--wine), #7a3f52);
+    border-radius:16px;
+    padding:1.6rem 1.4rem;
+    box-shadow:0 20px 40px -14px rgba(92,42,58,0.5);
+  }
+  .cassette-window{
+    background:var(--blush);
+    border-radius:10px;
+    padding:1rem;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    margin-bottom:1.2rem;
+  }
+  .reel{
+    width:44px; height:44px; border-radius:50%;
+    background:repeating-conic-gradient(var(--wine) 0deg 10deg, transparent 10deg 20deg);
+    border:3px solid var(--wine);
+    animation:spin 4s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .song-list{
+    list-style:none;
+    text-align:left;
+  }
+  .song-list li{
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    padding:0.55rem 0;
+    border-bottom:1px dashed rgba(255,255,255,0.25);
+    color:var(--blush);
+    font-family:'Quicksand';
+    font-size:0.92rem;
+  }
+  .song-list li:last-child{ border-bottom:none; }
+  .song-list .num{ color:var(--gold); font-weight:600; margin-right:0.6rem; }
+  .song-list .artist{ opacity:0.7; font-size:0.82rem; }
+
+  /* ---------- FOOTER ---------- */
+  #footer{
+    min-height:40vh;
+    background:radial-gradient(circle at 50% 80%, var(--blush) 0%, var(--cream) 70%);
+  }
+  .footer-title{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:clamp(1.6rem, 4vw, 2.2rem);
+    color:var(--wine);
+  }
+  .footer-note{
+    margin-top:0.8rem;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.1rem;
+    color:var(--deep-rose);
+  }
+
+  .edit-note{
+    position:fixed;
+    bottom:14px;
+    right:14px;
+    background:rgba(92,42,58,0.85);
+    color:#fff;
+    font-size:0.68rem;
+    padding:6px 10px;
+    border-radius:20px;
+    z-index:50;
+    font-family:'Quicksand';
+    letter-spacing:0.02em;
+    opacity:0.85;
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts-bg" id="heartsBg"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="eyebrow">sebuah kejutan kecil</p>
+  <h1 class="hero-title">Untuk kamu, yang selalu punya tempat di setiap cerita hariku.</h1>
+  <p class="hero-sub">Scroll pelan-pelan ya, ada beberapa hal yang mau aku tunjukkan.</p>
+  <p class="scroll-hint">↓ gulir ke bawah</p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="section-kicker">kenangan kita</p>
+  <h2 class="section-title">Beberapa momen favoritku</h2>
+  <div class="gallery-grid">
+    <figure class="polaroid">
+      <img src="https://picsum.photos/seed/kita1/400/400" alt="Foto kenangan 1">
+      <figcaption>momen pertama kita</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <img src="https://picsum.photos/seed/kita2/400/400" alt="Foto kenangan 2">
+      <figcaption>hari yang paling seru</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <img src="https://picsum.photos/seed/kita3/400/400" alt="Foto kenangan 3">
+      <figcaption>senyum favoritku</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <img src="https://picsum.photos/seed/kita4/400/400" alt="Foto kenangan 4">
+      <figcaption>waktu itu, kamu ketawa terus</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <img src="https://picsum.photos/seed/kita5/400/400" alt="Foto kenangan 5">
+      <figcaption>tempat favorit kita</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <img src="https://picsum.photos/seed/kita6/400/400" alt="Foto kenangan 6">
+      <figcaption>selalu pengen diulang</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter">
+  <p class="section-kicker">sepucuk surat</p>
+  <h2 class="section-title">Ada sesuatu buat kamu</h2>
+  <div class="envelope-wrap">
+    <div class="envelope" id="envelope">
+      <div class="letter-paper">
+        Halo sayang,<br><br>
+        Aku bikin halaman kecil ini cuma buat bilang satu hal sederhana:
+        aku bersyukur banget ada kamu. Hal-hal kecil yang kamu lakuin,
+        cara kamu ketawa, cara kamu peduli — semuanya bikin hari-hariku
+        jauh lebih hangat.<br><br>
+        Makasih udah jadi kamu. Makasih udah bertahan bareng aku sejauh ini.
+        <span class="signoff">— dengan sayang, selalu.</span>
+      </div>
+      <div class="env-back"></div>
+      <div class="env-body"></div>
+      <div class="wax-seal">S</div>
+      <div class="env-flap"></div>
+    </div>
+  </div>
+  <p class="tap-label">tap amplopnya</p>
+</section>
+
+<!-- PLAYLIST -->
+<section id="playlist">
+  <p class="section-kicker">lagu-lagu kita</p>
+  <h2 class="section-title">Playlist buat kamu dengerin</h2>
+  <div class="cassette">
+    <div class="cassette-window">
+      <div class="reel"></div>
+      <div class="reel"></div>
+    </div>
+    <ul class="song-list">
+      <li><span><span class="num">01</span>Ganti judul lagu di sini</span><span class="artist">Nama Artis</span></li>
+      <li><span><span class="num">02</span>Ganti judul lagu di sini</span><span class="artist">Nama Artis</span></li>
+      <li><span><span class="num">03</span>Ganti judul lagu di sini</span><span class="artist">Nama Artis</span></li>
+      <li><span><span class="num">04</span>Ganti judul lagu di sini</span><span class="artist">Nama Artis</span></li>
+      <li><span><span class="num">05</span>Ganti judul lagu di sini</span><span class="artist">Nama Artis</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section id="footer">
+  <p class="footer-title">terima kasih sudah membaca sampai sini 🤍</p>
+  <p class="footer-note">— dibuat dengan sepenuh hati, khusus untuk kamu</p>
+</section>
+
+<script>
+  // floating hearts
+  const heartsBg = document.getElementById('heartsBg');
+  const heartChars = ['♡','❀','✿'];
+  for(let i=0;i<18;i++){
+    const h = document.createElement('span');
+    h.className = 'heart';
+    h.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.animationDuration = (10 + Math.random()*14) + 's';
+    h.style.animationDelay = (Math.random()*14) + 's';
+    h.style.fontSize = (1 + Math.random()*1.3) + 'rem';
+    heartsBg.appendChild(h);
+  }
+
+  // envelope open/close
+  const envelope = document.getElementById('envelope');
+  envelope.addEventListener('click', () => {
+    envelope.classList.toggle('open');
+  });
+</script>
+
+<div class="edit-note">📝 Ganti foto, nama lagu &amp; isi surat di file HTML</div>
+
+</body>
+</html>
